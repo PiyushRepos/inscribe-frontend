@@ -4,21 +4,151 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   font-family: "Funnel Display", serif;
   scroll-behavior: smooth;
+  @apply dark:bg-[#121212];
 }
 
 label {
-  @apply block text-sm font-medium;
+  @apply block text-sm font-medium dark:text-gray-100;
 }
 
 input[type="text"],
 input[type="email"],
 input[type="password"] {
-  @apply border border-neutral-200 focus:outline-neutral-300 px-3 py-2 rounded-md w-full;
+  @apply border border-neutral-200 focus:outline-neutral-300 px-3 py-2 rounded-md w-full dark:bg-transparent dark:border-[#393939] dark:focus:outline-zinc-400 dark:focus:border-none dark:text-white;
 }
 
 .btn-primary {
-  @apply bg-zinc-900 hover:bg-zinc-900/90 shadow cursor-pointer text-white text-sm font-medium px-4 py-3 rounded-md;
+  @apply bg-zinc-900 hover:bg-zinc-900/90 shadow cursor-pointer text-white text-sm font-semibold px-6 py-3 rounded-md dark:bg-white dark:text-black dark:hover:bg-white/90;
+}
+
+.tiptap {
+  @apply rounded-b-md min-h-72 p-2 border-2 outline-none dark:text-gray-100 dark:border-gray-500;
+}
+
+.tiptap-toolbar {
+  @apply p-2 border-2 outline-none dark:border-gray-500;
+}
+
+.is-active {
+  @apply bg-zinc-600 dark:bg-zinc-300 text-white dark:text-black p-1 rounded-md;
+}
+
+.tiptap p.is-editor-empty:first-child::before {
+  color: #adb5bd;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Basic editor styles */
+.tiptap {
+  :first-child {
+    margin-top: 0;
+  }
+
+  /* List styles */
+  ul,
+  ol {
+    padding: 0 1rem;
+    margin: 1.25rem 1rem 1.25rem 0.4rem;
+
+    li p {
+      margin-top: 0.25em;
+      margin-bottom: 0.25em;
+    }
+  }
+
+  ol {
+    list-style: decimal;
+  }
+  ul {
+    list-style: disc;
+  }
+
+  /* Heading styles */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    line-height: 1.1;
+    margin-top: 2.5rem;
+    text-wrap: pretty;
+    font-weight: bold;
+  }
+
+  h1,
+  h2 {
+    margin-top: 3.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: bolder;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.17rem;
+  }
+
+  h4 {
+    font-size: 1rem;
+  }
+
+  h5 {
+    font-size: 0.83rem;
+  }
+
+  h6 {
+    font-size: 0.67rem;
+  }
+
+  u {
+    @apply underline-offset-1;
+  }
+
+  pre {
+    background: #2e2b29;
+    border-radius: 0.5rem;
+    color: #fff;
+    font-family: "JetBrainsMono", monospace;
+    margin: 1.5rem 0;
+    padding: 0.75rem 1rem;
+
+    code {
+      background: none;
+      color: inherit;
+      font-size: 0.8rem;
+      padding: 0;
+    }
+  }
+
+  blockquote {
+    border-left: 0.1875rem solid gray;
+    font-style: italic;
+    margin: 1.5rem 0;
+    padding-left: 1rem;
+  }
+
+  hr {
+    border: 1px solid #d5d2d2;
+    border-top: 0.0625rem solid var(--gray-2);
+    margin: 2rem 0;
+  }
 }

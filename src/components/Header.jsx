@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import axios from "axios";
+import axios from "../axios/axios.js";
 import { toast } from "sonner";
 import useUserContext from "../context/userContext";
 
@@ -9,7 +9,7 @@ function Header() {
 
   async function handleLogoutUser() {
     const result = await axios.post(
-      "http://localhost:5001/api/auth/logout",
+      "/api/auth/logout",
       {},
       { withCredentials: true }
     );
@@ -22,7 +22,9 @@ function Header() {
       <div className="flex items-center justify-between">
         <div>
           <Link to="/">
-            <h2 className="text-2xl font-bold">Inscribe</h2>
+            <h2 className="text-xl sm:text-2xl font-bold dark:text-white/90">
+              Inscribe
+            </h2>
           </Link>
         </div>
         <nav>
@@ -36,7 +38,7 @@ function Header() {
                       isActive
                         ? "font-semibold text-neutral-700"
                         : "font-medium text-neutral-500"
-                    }`
+                    } text-sm sm:text-base`
                   }
                 >
                   Login
@@ -48,9 +50,9 @@ function Header() {
                   className={({ isActive }) =>
                     `${
                       isActive
-                        ? "font-semibold text-neutral-700"
+                        ? "font-semibold text-neutral-700 dark:text-neutral-400"
                         : "font-medium text-neutral-500"
-                    }`
+                    } text-sm sm:text-base`
                   }
                 >
                   Register
@@ -62,13 +64,27 @@ function Header() {
             <div className="flex items-center gap-4">
               <div>
                 <NavLink
+                  to="/create"
+                  className={({ isActive }) =>
+                    `${
+                      isActive
+                        ? "font-semibold text-neutral-700 dark:text-neutral-400"
+                        : "font-medium text-neutral-500"
+                    } text-sm sm:text-base`
+                  }
+                >
+                  Create Post
+                </NavLink>
+              </div>
+              <div>
+                <NavLink
                   to="/profile"
                   className={({ isActive }) =>
                     `${
                       isActive
-                        ? "font-semibold text-neutral-700"
+                        ? "font-semibold text-neutral-700 dark:text-neutral-400"
                         : "font-medium text-neutral-500"
-                    }`
+                    } text-sm sm:text-base`
                   }
                 >
                   My Profile
@@ -77,7 +93,7 @@ function Header() {
               <div>
                 <NavLink
                   onClick={handleLogoutUser}
-                  className="text-red-500 font-medium"
+                  className="text-red-500 font-medium text-sm sm:text-base"
                 >
                   Logout
                 </NavLink>

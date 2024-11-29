@@ -4,20 +4,20 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { RegisterFormSchema } from "../utils/formValidator";
-import axios from "axios";
+import axios from "../axios/axios.js";
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 import { AiOutlineLoading } from "react-icons/ai";
 import useUserContext from "../context/userContext";
 
 function Register() {
   const { isAuthenticated } = useUserContext();
+  const navigate = useNavigate();
 
   if (isAuthenticated()) {
     navigate("/");
   }
 
   const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -28,11 +28,9 @@ function Register() {
 
   async function handleRegister(data) {
     try {
-      const result = await axios.post(
-        "http://localhost:5001/api/auth/register",
-        data,
-        { withCredentials: true }
-      );
+      const result = await axios.post("/api/auth/register", data, {
+        withCredentials: true,
+      });
       navigate("/auth/login");
       toast.success(result.data.message);
     } catch (error) {
@@ -41,11 +39,13 @@ function Register() {
   }
 
   return (
-    <div className="max-w-screen-sm mx-auto flex justify-center mt-36 px-2">
-      <div className="border shadow-md rounded-md max-w-2xl w-full sm:w-[68%] py-4 px-6">
+    <div className="max-w-screen-sm mx-auto flex justify-center mt-28 px-2">
+      <div className="border dark:border-[#272727] shadow-md dark:shadow-none rounded-md max-w-2xl w-full sm:w-[68%] py-4 px-6">
         <div>
-          <h2 className="font-bold text-2xl">Create an account</h2>
-          <p className="font-medium text-xs sm:text-sm text-neutral-400">
+          <h2 className="font-bold text-2xl dark:text-gray-200">
+            Create an account
+          </h2>
+          <p className="font-medium text-xs sm:text-sm text-neutral-400 dark:text-gray-400">
             It only takes a minute to get started. Join us today!
           </p>
         </div>
@@ -76,6 +76,16 @@ function Register() {
                     {...register("lastName")}
                   />
                 </div>
+              </div>
+              <div className="flex flex-col gap-1">
+                <label htmlFor="username">Username</label>
+                <input
+                  type="text"
+                  id="username"
+                  placeholder="john.developer"
+                  autoComplete="off"
+                  {...register("username")}
+                />
               </div>
               <div className="flex flex-col gap-1">
                 <label htmlFor="email">Email</label>
@@ -111,6 +121,7 @@ function Register() {
                 <button
                   className="btn-primary mt-1 w-full flex items-center justify-center gap-4"
                   type="submit"
+                  disabled={isSubmitting}
                 >
                   Create account{" "}
                   {isSubmitting && (
@@ -119,9 +130,12 @@ function Register() {
                 </button>
               </div>
               <div>
-                <p className="text-center text-sm text-neutral-500 font-medium">
+                <p className="text-center text-sm text-neutral-500 font-medium dark:text-gray-300">
                   Already have an account?{" "}
-                  <Link to="/auth/login" className="text-neutral-800 underline">
+                  <Link
+                    to="/auth/login"
+                    className="text-neutral-800 underline dark:text-gray-200"
+                  >
                     Login
                   </Link>
                 </p>

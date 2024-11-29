@@ -4,10 +4,12 @@ import Layout from "./components/Layout.jsx";
 import Home from "./components/Home.jsx";
 import Login from "./components/Login.jsx";
 import Register from "./components/Register.jsx";
-import CreatePost from "./components/CreatePost.jsx";
 import axios from "axios";
 import { UserProvider } from "./context/userContext.js";
 import Profile from "./components/Profile.jsx";
+import NotFound from "./components/NotFound.jsx";
+import PostPage from "./components/PostPage.jsx";
+import CreatePost from "./components/CreatePost.jsx";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -27,10 +29,11 @@ function App() {
   const logout = () => {
     setUser(null);
   };
+
   useEffect(() => {
     if (!user) {
       axios
-        .get("http://localhost:5001/api/users/profile", {
+        .get("api/users/profile", {
           withCredentials: true,
         })
         .then((result) => {
@@ -46,9 +49,11 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/auth/login" element={<Login />} />
           <Route path="/auth/register" element={<Register />} />
-          <Route path="/create-post" element={<CreatePost />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/create" element={<CreatePost />} />
+          <Route path="/post/:id" element={<PostPage />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </UserProvider>
   );

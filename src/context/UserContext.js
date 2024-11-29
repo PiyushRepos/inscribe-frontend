@@ -1,5 +1,4 @@
 import { createContext, useContext } from "react";
-import { CgExport } from "react-icons/cg";
 
 export const UserContext = createContext({
   user: null,

@@ -8,12 +8,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  @apply transition-colors duration-200;
 }
 
 body {
   font-family: "Funnel Display", serif;
   scroll-behavior: smooth;
-  @apply dark:bg-[#121212];
+  @apply dark:bg-zinc-950;
 }
 
 label {
@@ -27,7 +28,7 @@ input[type="password"] {
 }
 
 .btn-primary {
-  @apply bg-zinc-900 hover:bg-zinc-900/90 shadow cursor-pointer text-white text-sm font-semibold px-6 py-3 rounded-md dark:bg-white dark:text-black dark:hover:bg-white/90;
+  @apply bg-zinc-900 hover:bg-zinc-900/90 shadow cursor-pointer text-white text-sm font-semibold px-4 py-3 rounded-md dark:bg-white dark:text-black dark:hover:bg-white/90;
 }
 
 .tiptap {
@@ -40,6 +41,10 @@ input[type="password"] {
 
 .is-active {
   @apply bg-zinc-600 dark:bg-zinc-300 text-white dark:text-black p-1 rounded-md;
+}
+
+.blog-image {
+  margin: 1rem 0;
 }
 
 .tiptap p.is-editor-empty:first-child::before {
@@ -59,13 +64,23 @@ input[type="password"] {
   /* List styles */
   ul,
   ol {
-    padding: 0 1rem;
-    margin: 1.25rem 1rem 1.25rem 0.4rem;
+    padding: 0 16px;
+    margin: 20px 16px 20px 6.4px;
 
     li p {
       margin-top: 0.25em;
       margin-bottom: 0.25em;
     }
+  }
+
+  img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+  }
+
+  &.ProseMirror-selectednode {
+    outline: 3px solid red;
   }
 
   ol {
@@ -83,40 +98,43 @@ input[type="password"] {
   h5,
   h6 {
     line-height: 1.1;
-    margin-top: 2.5rem;
+    margin-top: 40px;
     text-wrap: pretty;
     font-weight: bold;
   }
 
   h1,
   h2 {
-    margin-top: 3.5rem;
-    margin-bottom: 1.5rem;
-    font-weight: bolder;
+    margin-top: 56px;
+    margin-bottom: 24px;
   }
 
   h1 {
-    font-size: 2rem;
+    @apply text-[34px] font-extrabold;
   }
 
   h2 {
-    font-size: 1.5rem;
+    @apply text-xl md:text-2xl font-bold;
   }
 
   h3 {
-    font-size: 1.17rem;
+    font-size: 18.72px;
+    @apply font-bold;
   }
 
   h4 {
-    font-size: 1rem;
+    font-size: 16px;
+    @apply font-semibold;
   }
 
   h5 {
-    font-size: 0.83rem;
+    font-size: 13.28px;
+    @apply font-semibold;
   }
 
   h6 {
-    font-size: 0.67rem;
+    font-size: 10.72px;
+    @apply font-medium;
   }
 
   u {
@@ -125,30 +143,30 @@ input[type="password"] {
 
   pre {
     background: #2e2b29;
-    border-radius: 0.5rem;
+    border-radius: 8px;
     color: #fff;
     font-family: "JetBrainsMono", monospace;
-    margin: 1.5rem 0;
-    padding: 0.75rem 1rem;
+    margin: 24px 0;
+    padding: 12px 16px;
 
     code {
       background: none;
       color: inherit;
-      font-size: 0.8rem;
+      font-size: 12.8px;
       padding: 0;
     }
   }
 
   blockquote {
-    border-left: 0.1875rem solid gray;
+    border-left: 3px solid gray;
     font-style: italic;
-    margin: 1.5rem 0;
-    padding-left: 1rem;
+    margin: 24px 0;
+    padding-left: 16px;
   }
 
   hr {
-    border: 1px solid #d5d2d2;
-    border-top: 0.0625rem solid var(--gray-2);
-    margin: 2rem 0;
+    border: 0.0625rem solid #d5d2d2;
+    border-top: 1px solid var(--gray-2);
+    margin: 32px 0;
   }
 }

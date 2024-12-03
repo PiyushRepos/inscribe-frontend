@@ -4,7 +4,7 @@ import Layout from "./components/Layout.jsx";
 import Home from "./components/Home.jsx";
 import Login from "./components/Login.jsx";
 import Register from "./components/Register.jsx";
-import axios from "axios";
+import axios from "./axios/axios.js";
 import { UserProvider } from "./context/userContext.js";
 import Profile from "./components/Profile.jsx";
 import NotFound from "./components/NotFound.jsx";
@@ -33,7 +33,7 @@ function App() {
   useEffect(() => {
     if (!user) {
       axios
-        .get("api/users/profile", {
+        .get("/api/users/profile", {
           withCredentials: true,
         })
         .then((result) => {
@@ -51,7 +51,7 @@ function App() {
           <Route path="/auth/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/create" element={<CreatePost />} />
-          <Route path="/post/:id" element={<PostPage />} />
+          <Route path="/post/:postId" element={<PostPage />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

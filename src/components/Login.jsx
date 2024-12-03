@@ -33,7 +33,6 @@ function Login() {
       }
     }
   }, [errors]);
-
   async function handleLogin(data) {
     try {
       await axios

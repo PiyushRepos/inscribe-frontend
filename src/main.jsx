@@ -6,13 +6,15 @@ import { BrowserRouter } from "react-router-dom";
 import { Toaster } from "sonner";
 
 createRoot(document.getElementById("root")).render(
-  <BrowserRouter>
-    <Toaster
-      visibleToasts={4}
-      richColors
-      duration={3000}
-      position="top-right"
-    />
-    <App />
-  </BrowserRouter>
+  <StrictMode>
+    <BrowserRouter>
+      <Toaster
+        visibleToasts={4}
+        richColors
+        duration={3000}
+        position="bottom-right"
+      />
+      <App />
+    </BrowserRouter>
+  </StrictMode>
 );

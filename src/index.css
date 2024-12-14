@@ -11,6 +11,18 @@
   @apply transition-colors duration-200;
 }
 
+*::selection {
+  @apply bg-purple-800 text-white dark:bg-purple-300 dark:text-black;
+}
+
+::-webkit-scrollbar {
+  @apply w-2;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-zinc-400 rounded-full;
+}
+
 body {
   font-family: "Funnel Display", serif;
   scroll-behavior: smooth;

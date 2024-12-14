@@ -12,7 +12,6 @@ function Profile() {
     return navigate("/auth/login");
   }
 
-  console.log(user);
   dayjs.extend(relativeTime);
 
   return (
@@ -33,9 +32,9 @@ function Profile() {
             <p className="text-neutral-600 font-semibold dark:text-gray-300">
               {user?.bio || "Full Stack Web Developer"}
             </p>
-            <p className="text-neutral-600 dark:text-gray-400">{`joined ${dayjs(
+            <p className="text-neutral-600 dark:text-gray-400">{`Joined ${dayjs(
               user?.createdAt
-            ).fromNow()}`}</p>
+            ).format("MMM DD, YYYY")}`}</p>
           </div>
         </div>
         <div className="my-4 relative">
@@ -52,8 +51,12 @@ function Profile() {
                     <div>
                       <div>
                         <img
-                          className="rounded-md w-full object-cover border"
-                          src={post.thumbnail}
+                          className="rounded-md w-full object-cover border h-full"
+                          loading="lazy"
+                          src={
+                            post.thumbnail ||
+                            "https://placehold.co/300x166/?text=Thumbnail"
+                          }
                           alt="thumbnail image"
                         />
                       </div>

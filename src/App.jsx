@@ -10,6 +10,7 @@ import Profile from "./components/Profile.jsx";
 import NotFound from "./components/NotFound.jsx";
 import PostPage from "./components/PostPage.jsx";
 import CreatePost from "./components/CreatePost.jsx";
+import EditPost from "./components/EditPost.jsx";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -52,6 +53,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/create" element={<CreatePost />} />
           <Route path="/post/:postId" element={<PostPage />} />
+          <Route path="/post/:postId/edit" element={<EditPost />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

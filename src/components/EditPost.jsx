@@ -1,5 +1,5 @@
-import React, { useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useRef, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { EditorContent, useEditor } from "@tiptap/react";
 import ListItem from "@tiptap/extension-list-item";
 import Underline from "@tiptap/extension-underline";
@@ -83,33 +83,45 @@ const extensions = [
   }),
 ];
 
-function CreatePost() {
+function EditPost() {
   const { isAuthenticated } = useUserContext();
-  const naviagte = useNavigate();
-
-  if (!isAuthenticated()) naviagte("/auth/login");
-
   const [localThumbnailUrl, setLocalThumbnailUrl] = useState(null);
   const [showColorPicker, setShowColorPicker] = useState({
     highlighter: false,
     textColor: false,
   });
+  const naviagte = useNavigate();
+
+  if (!isAuthenticated()) naviagte("/auth/login");
+
+  const { postId } = useParams();
 
   const [postData, setPostData] = useState({
     title: "",
     summary: "",
-    content: localStorage.getItem("editorContent")
-      ? JSON.parse(localStorage.getItem("editorContent"))
-      : null,
+    content: "",
     thumbnail: null,
   });
 
-  const form = new FormData();
-
   const editor = useEditor({
     extensions,
-    content: postData.content,
+    content: "",
   });
+
+  useEffect(() => {
+    axios.get(`/api/posts/${postId}`).then((res) => {
+      let post = res.data.data.post;
+      setPostData({
+        ...postData,
+        title: post.title,
+        summary: post.summary,
+        content: post.content,
+        thumbnail: post.thumbnail,
+      });
+      editor.commands.setContent(post.content);
+      setLocalThumbnailUrl(post.thumbnail);
+    });
+  }, [postId]);
 
   const addImage = (image) => {
     if (!image) return;
@@ -139,7 +151,7 @@ function CreatePost() {
     return null;
   }
 
-  // create posts ----------------
+  // Edit posts ----------------
 
   const textareaRef = useRef(null);
   function setTextareaHeight() {
@@ -155,38 +167,35 @@ function CreatePost() {
     summaryTextareaRef.current.style.height = `${scrollHeight}px`;
   }
 
-  async function handleCreatePost() {
+  async function handleUpdatePost() {
     if (!localThumbnailUrl) return toast.error("Thumbnal is required");
     if (!postData.title) return toast.error("Title is required");
     if (!postData.summary) return toast.error("Summary is required");
     if (editor.getText().length < 10)
       return toast.error("Minimum content length for creating a post is 10");
 
-    toast.loading("Loading...", { id: "createPosts" });
+    toast.loading("Loading...", { id: "updatePosts" });
+    const formData = new FormData();
+    formData.append("thumbnail", postData.thumbnail);
+    formData.append("title", postData.title);
+    formData.append("summary", postData.summary);
+    formData.append("content", editor.getHTML());
+
     await axios
-      .post(
-        "/api/posts",
-        { ...postData, ...form },
-        {
-          headers: { "Content-Type": "multipart/form-data" },
-        }
-      )
+      .put(`/api/posts/${postId}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
       .then((res) => {
-        toast.dismiss("createPosts");
-        localStorage.setItem("editorContent", "");
-        setPostData({
-          title: "",
-          summary: "",
-          content: editor.getHTML(),
-          thumbnail: null,
-        });
+        console.log(res.data);
+        toast.dismiss("updatePosts");
         toast.success(res.data.message);
         naviagte(`/post/${res.data.data.post._id}`);
       })
       .catch((err) => {
-        console.log(err);
         err.response.data.error.errors?.map((err) => toast.error(err));
-        toast.dismiss("createPosts");
+        toast.dismiss("updatePosts");
       });
   }
 
@@ -223,8 +232,8 @@ function CreatePost() {
               />
             </div>
             <div>
-              <button onClick={handleCreatePost} className="btn-primary">
-                Create post
+              <button onClick={handleUpdatePost} className="btn-primary">
+                Update
               </button>
             </div>
           </div>
@@ -516,7 +525,7 @@ function CreatePost() {
           </div>
           <div>
             <EditorContent
-              onKeyDown={(e) => {
+              onChange={(e) => {
                 console.log(editor.getHTML());
                 setPostData({ ...postData, content: editor.getHTML() });
               }}
@@ -529,4 +538,4 @@ function CreatePost() {
   );
 }
 
-export default CreatePost;
+export default EditPost;

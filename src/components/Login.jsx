@@ -39,16 +39,22 @@ function Login() {
         .post("/api/auth/login", data, {
           withCredentials: true,
         })
-        .then((res) => {
-          login(res.data.data.user);
+        .then(({ data: { data } }) => {
+          login(data.user);
           navigate("/");
-          toast.success("Welcome " + res.data.data.user.firstName);
+          toast.success("Welcome " + data.user.firstName);
         })
-        .catch((err) => {
-          toast.error(err.response.data.error.message);
-        });
+        .catch(
+          ({
+            response: {
+              data: { error },
+            },
+          }) => {
+            toast.error(error.message);
+          }
+        );
     } catch (error) {
-      toast.error("Something went wrong. Pease try after some time");
+      toast.error("Something went wrong. Pease try after some time.");
     }
   }
 

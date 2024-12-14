@@ -5,7 +5,7 @@ import Home from "./components/Home.jsx";
 import Login from "./components/Login.jsx";
 import Register from "./components/Register.jsx";
 import axios from "./axios/axios.js";
-import { UserProvider } from "./context/userContext.js";
+import { UserProvider } from "./context/UserContext.jsx";
 import Profile from "./components/Profile.jsx";
 import NotFound from "./components/NotFound.jsx";
 import PostPage from "./components/PostPage.jsx";

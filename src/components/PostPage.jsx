@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 dayjs.extend(relativeTime);
-import ReactHtmlParser from "react-html-parser";
+import ReactHtmlParser from "html-react-parser";
 import PostPageSkeleton from "./PostPageSkeleton.jsx";
 import { HiDotsVertical } from "react-icons/hi";
 import useUserContext from "../context/UserContext.jsx";

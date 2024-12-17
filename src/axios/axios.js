@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const Axios = new axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: String(import.meta.env.VITE_BASE_URL),
   withCredentials: true,
 });
-
+console.log(String(import.meta.env.VITE_BASE_URL));
 export default Axios;

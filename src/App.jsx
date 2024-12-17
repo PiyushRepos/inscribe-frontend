@@ -4,7 +4,6 @@ import Layout from "./components/Layout.jsx";
 import Home from "./components/Home.jsx";
 import Login from "./components/Login.jsx";
 import Register from "./components/Register.jsx";
-import axios from "./axios/axios.js";
 import { UserProvider } from "./context/userContext.jsx";
 import Profile from "./components/Profile.jsx";
 import NotFound from "./components/NotFound.jsx";
@@ -31,18 +30,6 @@ function App() {
     setUser(null);
   };
 
-  useEffect(() => {
-    if (!user) {
-      axios
-        .get("/api/users/profile", {
-          withCredentials: true,
-        })
-        .then((result) => {
-          setUser(result.data.data);
-        })
-        .catch((err) => console.log(err.message));
-    }
-  }, []);
   return (
     <UserProvider value={{ user, logout, login, isAuthenticated }}>
       <Routes>

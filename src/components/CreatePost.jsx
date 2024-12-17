@@ -87,7 +87,7 @@ function CreatePost() {
   const { isAuthenticated } = useUserContext();
   const naviagte = useNavigate();
 
-  if (!isAuthenticated()) naviagte("/auth/login");
+  if (!isAuthenticated) naviagte("/auth/login");
 
   const [localThumbnailUrl, setLocalThumbnailUrl] = useState(null);
   const [showColorPicker, setShowColorPicker] = useState({
@@ -517,7 +517,6 @@ function CreatePost() {
           <div>
             <EditorContent
               onKeyDown={(e) => {
-                console.log(editor.getHTML());
                 setPostData({ ...postData, content: editor.getHTML() });
               }}
               editor={editor}

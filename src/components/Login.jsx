@@ -13,7 +13,7 @@ function Login() {
   const { login, isAuthenticated } = useUserContext();
   const navigate = useNavigate();
 
-  if (isAuthenticated()) {
+  if (isAuthenticated) {
     return navigate("/");
   }
 

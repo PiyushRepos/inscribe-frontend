@@ -94,7 +94,7 @@ function PostPage() {
             </div>
           )}
         </div>
-        <div className="rounded overflow-hidden">
+        <div className="rounded overflow-hidden border border-slate-200">
           <img
             className="aspect-video w-full"
             src={

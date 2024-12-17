@@ -8,7 +8,7 @@ function Profile() {
   const { user, isAuthenticated } = useUserContext();
   const navigate = useNavigate();
 
-  if (!isAuthenticated()) {
+  if (!isAuthenticated) {
     return navigate("/auth/login");
   }
 

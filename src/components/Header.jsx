@@ -46,7 +46,7 @@ function Header() {
             </Link>
           </div>
           <nav className="relative flex items-center gap-4">
-            {!isAuthenticated() && (
+            {!isAuthenticated && (
               <div className="flex items-center gap-4">
                 <div>
                   <NavLink
@@ -90,7 +90,7 @@ function Header() {
                 )}
               </button>
             </div>
-            {isAuthenticated() && (
+            {isAuthenticated && (
               <div onClick={() => setShowMenu(!showMenu)}>
                 <HiDotsVertical className="cursor-pointer select-none dark:text-white" />
                 {showMenu && (

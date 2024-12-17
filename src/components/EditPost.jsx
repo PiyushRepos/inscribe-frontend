@@ -92,7 +92,7 @@ function EditPost() {
   });
   const naviagte = useNavigate();
 
-  if (!isAuthenticated()) naviagte("/auth/login");
+  if (!isAuthenticated) naviagte("/auth/login");
 
   const { postId } = useParams();
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import axios from "../axios/axios.js";
 import { toast } from "sonner";
-import useUserContext from "../context/userContext";
+import useUserContext from "../context/userContext.jsx";
 import { IoMoon } from "react-icons/io5";
 import { LuSunMoon } from "react-icons/lu";
 import { HiDotsVertical } from "react-icons/hi";

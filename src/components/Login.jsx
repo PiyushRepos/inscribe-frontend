@@ -7,7 +7,7 @@ import { LoginFormSchema } from "../utils/formValidator";
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 import { AiOutlineLoading } from "react-icons/ai";
 import axios from "../axios/axios.js";
-import useUserContext from "../context/userContext";
+import useUserContext from "../context/userContext.jsx";
 
 function Login() {
   const { login, isAuthenticated } = useUserContext();

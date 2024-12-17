@@ -40,7 +40,7 @@ import { BiCodeBlock } from "react-icons/bi";
 import { RiListUnordered } from "react-icons/ri";
 import { VscHorizontalRule } from "react-icons/vsc";
 import axios from "../axios/axios.js";
-import useUserContext from "../context/UserContext.jsx";
+import useUserContext from "../context/userContext.jsx";
 
 // extensions
 const extensions = [

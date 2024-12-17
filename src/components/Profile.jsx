@@ -1,5 +1,5 @@
 import React from "react";
-import useUserContext from "../context/userContext";
+import useUserContext from "../context/UserContext";
 import { Link, useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";

@@ -8,7 +8,7 @@ dayjs.extend(relativeTime);
 import ReactHtmlParser from "react-html-parser";
 import PostPageSkeleton from "./PostPageSkeleton.jsx";
 import { HiDotsVertical } from "react-icons/hi";
-import useUserContext from "../context/userContext.jsx";
+import useUserContext from "../context/UserContext.jsx";
 
 function PostPage() {
   const [post, setPost] = useState(null);

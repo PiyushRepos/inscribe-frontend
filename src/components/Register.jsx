@@ -7,7 +7,7 @@ import { RegisterFormSchema } from "../utils/formValidator";
 import axios from "../axios/axios.js";
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 import { AiOutlineLoading } from "react-icons/ai";
-import useUserContext from "../context/userContext.jsx";
+import useUserContext from "../context/UserContext.jsx";
 
 function Register() {
   const { isAuthenticated } = useUserContext();

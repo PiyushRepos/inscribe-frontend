@@ -94,12 +94,12 @@ function Login() {
                 {!showPassword ? (
                   <HiOutlineEyeOff
                     onClick={() => setShowPassword((prev) => !prev)}
-                    className="absolute right-4 top-9 text-xl"
+                    className="absolute right-4 top-9 text-xl dark:text-white"
                   />
                 ) : (
                   <HiOutlineEye
                     onClick={() => setShowPassword((prev) => !prev)}
-                    className="absolute right-4 top-9 text-xl"
+                    className="absolute right-4 top-9 text-xl dark:text-white"
                   />
                 )}
               </div>

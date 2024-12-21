@@ -13,9 +13,7 @@ function Register() {
   const { isAuthenticated } = useUserContext();
   const navigate = useNavigate();
 
-  if (isAuthenticated()) {
-    navigate("/");
-  }
+  if (isAuthenticated) navigate("/");
 
   const [showPassword, setShowPassword] = useState(false);
   const {
@@ -108,12 +106,12 @@ function Register() {
                 {!showPassword ? (
                   <HiOutlineEyeOff
                     onClick={() => setShowPassword((prev) => !prev)}
-                    className="absolute right-4 top-9 text-xl"
+                    className="absolute right-4 top-9 text-xl dark:text-white"
                   />
                 ) : (
                   <HiOutlineEye
                     onClick={() => setShowPassword((prev) => !prev)}
-                    className="absolute right-4 top-9 text-xl"
+                    className="absolute right-4 top-9 text-xl dark:text-white"
                   />
                 )}
               </div>

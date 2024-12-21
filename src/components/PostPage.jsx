@@ -9,6 +9,8 @@ import ReactHtmlParser from "html-react-parser";
 import PostPageSkeleton from "./PostPageSkeleton.jsx";
 import { HiDotsVertical } from "react-icons/hi";
 import useUserContext from "../context/UserContext.jsx";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { stackoverflowDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 function PostPage() {
   const [post, setPost] = useState(null);
@@ -39,7 +41,6 @@ function PostPage() {
     axios
       .delete(`/api/posts/${postId}`, {})
       .then(({ data }) => {
-        console.log(data);
         toast.dismiss("deletePost");
         toast.success("Post deleted successfully");
         navigate("/");
@@ -118,7 +119,19 @@ function PostPage() {
       <div className="border my-5"></div>
       <div className="my-8">
         <div className="tiptap border-none max-w-screen-md text-wrap leading-7">
-          {ReactHtmlParser(post.content)}
+          {ReactHtmlParser(post.content, {
+            replace(elem) {
+              if (elem.name == "pre" && elem.type == "tag")
+                return (
+                  <SyntaxHighlighter
+                    language="javascript"
+                    style={stackoverflowDark}
+                  >
+                    {elem.children[0].children[0]?.data}
+                  </SyntaxHighlighter>
+                );
+            },
+          })}
         </div>
       </div>
     </div>

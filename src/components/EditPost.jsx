@@ -188,7 +188,6 @@ function EditPost() {
         },
       })
       .then((res) => {
-        console.log(res.data);
         toast.dismiss("updatePosts");
         toast.success(res.data.message);
         naviagte(`/post/${res.data.data.post._id}`);
@@ -501,10 +500,10 @@ function EditPost() {
                 <div className="cursor-pointer px-3 py-4 bg-white shadow-lg border hidden group-hover:flex group-hover:flex-col group-hover:gap-y-4 group-hover:group">
                   <div className="flex items-center gap-x-3">
                     <FiUpload className="text-sm sm:text-base" />
-                    <label className="cursor-pointer relative overflow-hidden w-full text-sm sm:text-base font-semibold">
+                    <label className="cursor-pointer relative overflow-hidden w-full text-sm sm:text-base font-semibold dark:text-black">
                       Upload
                       <input
-                        className="absolute left-0 opacity-0"
+                        className="absolute -left-0 opacity-0"
                         type="file"
                         onChange={(e) => addImage(e.target.files[0])}
                       />
@@ -526,7 +525,6 @@ function EditPost() {
           <div>
             <EditorContent
               onChange={(e) => {
-                console.log(editor.getHTML());
                 setPostData({ ...postData, content: editor.getHTML() });
               }}
               editor={editor}

@@ -39,7 +39,7 @@ function Home() {
               <div>
                 <div>
                   <img
-                    className="rounded-md w-full object-cover border-2 min-h-52"
+                    className="rounded-md w-full object-cover border-2 max-h-48 h-full "
                     loading="lazy"
                     src={
                       post.thumbnail ||
@@ -53,7 +53,7 @@ function Home() {
                     {post.title}
                   </h2>
                   <p
-                    className={`line-clamp-3 text-sm md:text-base py-1 text-neutral-600 md:text-neutral-500 font-medium dark:text-gray-400`}
+                    className={`line-clamp-2 text-sm md:text-base py-1 text-neutral-600 md:text-neutral-500 font-medium dark:text-gray-400`}
                   >
                     {post.summary}
                   </p>

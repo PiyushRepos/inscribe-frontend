@@ -184,7 +184,6 @@ function CreatePost() {
         naviagte(`/post/${res.data.data.post._id}`);
       })
       .catch((err) => {
-        console.log(err);
         err.response.data.error.errors?.map((err) => toast.error(err));
         toast.dismiss("createPosts");
       });

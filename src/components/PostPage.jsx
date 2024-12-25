@@ -125,6 +125,8 @@ function PostPage() {
                 return (
                   <SyntaxHighlighter
                     language="javascript"
+                    showLineNumbers
+                    lineNumberStyle={{ color: "#ccc", marginRight: ".45rem" }}
                     style={stackoverflowDark}
                   >
                     {elem.children[0].children[0]?.data}
